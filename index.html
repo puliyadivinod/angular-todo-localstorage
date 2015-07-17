@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Angular - Hello</title>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.min.js"></script>
+    <script src="app.js" type="text/javascript"></script>
+    
+    <style type="text/css">
+        .todo-true{
+            text-decoration: line-through;
+        }    
+    </style>
+    
+</head>
+<body>
+
+    <div ng-app="TodoApp" ng-controller="TodoController as todoList">
+        
+        <div>{{todoList.remaining()}} of {{todoList.todos.length}} remaining.</div>
+        [<a href="" ng-click="todoList.archive()">Archive</a>]
+        <div>
+            <ul>
+                <li ng-repeat="todo in todoList.todos">
+                    <input ng-change="todoList.completed()" type="checkbox" ng-model="todo.done" />
+                    <span class="todo-{{todo.done}}">{{todo.text}}</span>
+                </li>
+            </ul>
+        </div>
+        
+        <form ng-submit="todoList.addTodo()">
+            <input placeholder="Add Task" type="text" ng-model="todoList.todoText" /> <input type="submit" value="Add" />
+        </form>
+    </div>
+
+</body>
+</html>
